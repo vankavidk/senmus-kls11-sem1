@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#c1aae8">
+  <title>Melody Academy: The Inner Symphony</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="game"></div>
+
+  <!-- Menu: data siswa + pilih avatar -->
+  <div id="menu" class="hidden">
+    <div class="menu-card">
+      <h1>Melody Academy</h1>
+      <p class="tagline">Selaraskan nada, pahami makna, temukan jati dirimu.</p>
+      <div class="menu-grid">
+        <div class="menu-left">
+          <label for="inp-name">Nama Siswa</label>
+          <input id="inp-name" type="text" maxlength="18" placeholder="Ketik namamu" autocomplete="off">
+          <label for="sel-class">Kelas</label>
+          <select id="sel-class"></select>
+          <p id="menu-error" class="error"></p>
+          <button id="btn-start" class="btn-main">Mulai Petualangan</button>
+        </div>
+        <div class="menu-right">
+          <label>Pilih Avatar</label>
+          <div id="avatar-grid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div id="hud-profile" class="panel">
+      <img id="hud-avatar" alt="">
+      <div>
+        <div id="hud-name"></div>
+        <div id="hud-class"></div>
+        <div class="ip"><span class="coin"></span><span id="hud-ip">0</span> IP</div>
+      </div>
+    </div>
+    <div id="hud-quest" class="panel">
+      <div class="quest-head">MISI AKTIF &#127800;</div>
+      <div class="quest-title" id="quest-title"></div>
+      <ul id="quest-list"></ul>
+    </div>
+    <div id="hud-buttons">
+      <button id="btn-mute-m" title="Musik (nyala/mati)">MUS</button>
+      <button id="btn-mute-s" title="Efek suara (nyala/mati)">SFX</button>
+      <button id="btn-zout" title="Perkecil (-)">&minus;</button>
+      <button id="btn-zin" title="Perbesar (+)">+</button>
+      <button id="btn-book" title="Buku Rapor (TAB)">Buku</button>
+      <button id="btn-full" title="Layar penuh">&#9974;</button>
+    </div>
+  </div>
+
+  <div id="dialog" class="hidden">
+    <div class="dialog-name" id="dialog-name"></div>
+    <div class="dialog-text" id="dialog-text"></div>
+    <div class="dialog-hint" id="dialog-hint">ENTER / ketuk untuk lanjut</div>
+  </div>
+
+  <div id="book" class="hidden">
+    <div class="book-card">
+      <h2>Buku Rapor Petualangan</h2>
+      <div id="book-list"></div>
+      <button id="btn-notebook" class="btn-sub">Buku Catatan Seni</button>
+      <p class="book-foot">TAB atau ketuk di luar untuk menutup</p>
+    </div>
+  </div>
+
+  <!-- Buku Catatan Seni (rapor akhir) -->
+  <div id="notebook" class="hidden">
+    <div class="nb-card">
+      <h2 id="nb-title">Buku Catatan Seni</h2>
+      <div class="nb-head"><img id="nb-avatar" alt=""><div><div id="nb-name" class="nb-name"></div><div id="nb-class"></div></div></div>
+      <div id="nb-bars"></div>
+      <div class="nb-sum"><span>Total Insight Points</span><b id="nb-ip"></b></div>
+      <div class="nb-sum"><span>Misi tuntas</span><b id="nb-done"></b></div>
+      <div id="nb-status" class="nb-status"></div>
+      <button id="nb-close" class="btn-main">Tutup</button>
+    </div>
+  </div>
+
+  <!-- Dashboard Guru (tersembunyi: klik logo 5x di menu) -->
+  <div id="teacher" class="hidden">
+    <div class="tc-card">
+      <h2>[HASIL SISWA] <small id="tc-count"></small></h2>
+      <div class="tc-wrap"><table id="tc-table"></table></div>
+      <div id="tc-copybox" class="hidden"><p>Jika unduhan tidak berjalan di perangkat ini, salin tabel di bawah lalu tempel ke Excel atau Google Sheets.</p><textarea id="tc-text" readonly rows="5"></textarea><button id="tc-copy" class="btn-sub">Salin tabel</button></div>
+      <div class="tc-btns"><button id="tc-csv" class="btn-main">DOWNLOAD CSV</button><button id="tc-clear" class="btn-sub">Hapus data</button><button id="tc-close" class="btn-sub">Tutup</button></div>
+    </div>
+  </div>
+
+  <!-- Layar Materi (film) -->
+  <div id="film" class="hidden">
+    <div id="film-step"></div>
+    <button id="film-skip" class="btn-sub">Lewati</button>
+    <div id="film-caption">
+      <div id="film-name" class="dialog-name"></div>
+      <div id="film-text"></div>
+      <div id="film-hint" class="dialog-hint"></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+  <div id="rotate"><div>&#128241;<br>Putar perangkatmu ke mode <b>landscape</b><br>untuk bermain.</div></div>
+
+  <script src="lib/phaser.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
