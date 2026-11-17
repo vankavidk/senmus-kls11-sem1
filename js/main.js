@@ -43,6 +43,22 @@ const start = () => {
     scene: [BootScene, SplashScene, MenuScene, GameScene, GalleryScene, MiniSaluangScene, MiniGamelanScene, LabScene, MiniGenreScene, MiniMixScene, KedapScene, LorongScene, MiniCalibrateScene, KiborScene, MiniPostureScene, TamanScene, MiniLyricScene, MiniGrowScene, AulaScene, MiniStageScene, MiniShowScene, MiniQuizScene, FilmScene],
   })
   initNotebook(); initTeacher()
+
+  // Hitung ulang ukuran kanvas supaya selalu pas dengan layar (termasuk saat HP diputar
+  // dari portrait ke landscape, atau bar alamat browser muncul/hilang).
+  let rt = 0
+  const refit = () => {
+    game.scale.refresh()
+    clearTimeout(rt)
+    // beberapa browser HP baru melaporkan ukuran akhir sesaat setelah event rotasi
+    rt = setTimeout(() => game.scale.refresh(), 120)
+    setTimeout(() => game.scale.refresh(), 400)
+  }
+  window.addEventListener('resize', refit)
+  window.addEventListener('orientationchange', refit)
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', refit)
+  if (window.ResizeObserver) new ResizeObserver(refit).observe(document.getElementById('game'))
+  refit()
   window.__melody = { game, Storage }
 }
 
